@@ -14,9 +14,10 @@ An oft-stated problem in robotics is the recognition of objects from a live vide
 #### Background / Formulation
 DIGITS is preseeded with three CNNs for image classificaiton: LeNet, AlexNet, GoogLeNet. Only AlexNet and GoogleNet were used in this project because LeNet is optimized for object classification in the context a training and validation datasets of 28 x 28 grayscale images: a condition that did not apply to either supplied or self-collected image datasets of this project. To achieve the numerical objective ofan inference time below 10ms and an accuracy above 75%, a hyperparameter value of 5 epoches and the learning algorithm choice of stochastic gradient descent (SGD) was settled on, guided by intuition and experimental trial and error (e.g to achieve an accuracy of 75% more than one epoch it was anticipated that certainly more than one epoch would be needed but more than 8 or so would be overkill and begin to overextend inferencing time beyond the acceptable limit.)
 
-<p align="left"><img src="./misc_images/AlexNet_P1Dataset_Epoches5_SGD_EvaluateResults.png"></p>
-<p align="right"><img src="./misc_images/GoogLeNet_P1Dataset_Epoches5_SGD_EvaluateResults.png"></p>
-
+<p align="center">
+    <img src="./misc_images/AlexNet_P1Dataset_Epoches5_SGD_EvaluateResults.png" height="80%" width="48%">
+    <img src="./misc_images/GoogLeNet_P1Dataset_Epoches5_SGD_EvaluateResults.png" height="80%" width="48%">
+</p>
 
 #### Data Acquisition
 #### Results
