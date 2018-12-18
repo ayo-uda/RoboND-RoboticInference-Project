@@ -3,12 +3,10 @@ RoboND Term 2 Robotic Inference Project, Object Classification
 
 [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 
-## Deep Learning Project
+## Robotic Inference Project
 ### Writeup by Ayo Adedeji
 ---
-#### Instructions on how to implement segmentation network, collection training data, train model, and test in simulation are found [here](./project_setup.md).
-
-## [Rubric](https://review.udacity.com/#!/rubrics/1155/view) Points
+## [Rubric](https://review.udacity.com/#!/rubrics/1319/view) Points
 ---
 ### Achieving Semantic Segmentation using a Fully Convolutional Neural Network 
 In a Fully Convolutional Neural Network (FCN), each layer is a convolutional layer. This differs from approaches to classification in typical convolutional network schemes where a multilayer perceptron or fully connected layer (each neuron in layer is connected to each neuron in antecedent layer facilitating global integration of multiple features) is applied at the end of a convolutional neural network. A convolutional layer is applied at the end of FCNs to classify (i.e label with a color) pixel state of an input image. Semantic segmentation is achieved by producing an output layer with spatial matched dimensionality in which each pixel from the input image is classified and spatial information from input layer ultimately retained — this faciliates identification of objects through encoded location in local space and is the basis of training an FCN to get a simulated quadcopter to follow a target in space. FCN architecture for semantic segmentation consists of an encoder network (a series of convolutional layers that extract and integrate features on input layer and reduce to a 1x1 convolution layer) followed by a decoder network (a series of convolutional layers that projects the finer, higher resolution features of the encoder network into the features of the output layer with spatial matched dimensionality).  
