@@ -34,7 +34,28 @@ All images for the self-collected dataset were taken manually using an iPhone 6 
     <img src="./misc_images/utensil_dataset_training_breakdown_bar_chart.png" height="50%" width="48%">
     <img src="./misc_images/utensil_dataset_validation_breakdown_bar_chart.png" height="50%" width="48%">
 </p>
+
+All photos taken using an iPhone 6 Plus and iPad 3 were originally 2448×2448 pixels; however, since GoogLeNet is functionalized for 256x256 images and DIGITS has a method of resizing images (but without retaining original aspect ratio), a python script was used to resize all images to 256x256 pixels (whilst maintaining original aspect ratio) before the utensil dataset was uploaded to DIGITS. 
+
+```python
+# establish collision map
+other_detected_objects = detected_objects[index + 1:]
+ros_cloud_other_objects_data = []
+if other_detected_objects:
+    ros_cloud_other_objects_data = [[xyzrgb for xyzrgb in pc2.read_points(other_object.cloud, 
+        skip_nans=True, field_names=("x", "y", "z", "rgb"))] for other_object in other_detected_objects]
+    ros_cloud_other_objects_data = np.concatenate(ros_cloud_other_objects_data).tolist()
+collision_map_pcl_data = pcl.PointCloud_PointXYZRGB()
+collision_map_pcl_data.from_list(ros_cloud_table_data + ros_cloud_other_objects_data)
+collision_map = pcl_to_ros(collision_map_pcl_data)
+pcl_collision_map_pub.publish(collision_map)
+```
 #### Results
+
+<p align="center">
+    <img src="./misc_images/GoogLeNet_UtensilDataset_Epoches64_SGD_LossAndAccuracy_Curve.png" height="80%" width="100%">
+    <img src="./misc_images/GoogLeNet_UtensilDataset_Epoches64_SGD_LearningRate_Curve.png" height="80%" width="100%">
+</p>
 #### Discussion
 #### Conclusions / Future Work
 
