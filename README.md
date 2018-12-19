@@ -19,7 +19,21 @@ DIGITS is preseeded with three CNNs for image classificaiton: LeNet, AlexNet, Go
     <img src="./misc_images/GoogLeNet_P1Dataset_Epoches5_SGD_EvaluateResults.png" height="80%" width="48%">
 </p>
 
+Given that it was anticipated that more than 5 epoches would be necessary for high accuracy on the self-collected dataset, also coupled with the fact the CNN prototypes, AlexNet and GoogLeNet, used on the supplied dataset had the same accuracy at 5 epoches, the number of epoches was bumped up to 16 while keeping all other hyperparameters the same. At 16 epoches, the accuracy of the AlexNet prototype went down, perhaps due to overfitting on the training set, while the accuracy of GoogLeNet prototype stayed the same. It is necessary to note that the while the accuracy of the GoogLeNet prototype was found to be better, its inferencing speed was consistently slower than that of the AlexNet prototype. However, accuracy is considered to be more important in the tradeoff between accuracy and inferencing speed for this project. Likewise, GoogleNet was chosen as the CNN for this project (coupled with SGD and a epoch value of 64 to give the CNN prototype enough time to learn generalized features of the training dataset but, at the same time, minimize overfitting).
+
+<p align="center">
+    <img src="./misc_images/AlexNet_P1Dataset_Epoches16_SGD_EvaluateResults.png" height="80%" width="48%">
+    <img src="./misc_images/GoogLeNet_P1Dataset_Epoches16_SGD_EvaluateResults.png" height="80%" width="48%">
+</p>
+
 #### Data Acquisition
+All images for the self-collected dataset were taken manually using an iPhone 6 Plus and iPad 3. In the self-collected dataset of 2138 total images, there are five category of utensils and silverware: metal spoon (435 images), metal fork (470 images), metal spatula (425 images), wooden spoon (405 images), and wooden fork (403 images). All utensils and silverware were placed on a granite tabletop in a kitchen area, to best approximate the intended environment of real time classification, and the iPhone 6 Plus or iPad 3 was manually rotated over each utensil category at a arm's length distance. Measures were taken to maximize the variety of angles and positions of images taken for each utensil, so that during training the final CNN prototype would learn to generalize classification to broader, generalized features of each utensil. Additionally, maximizing the variety of angles and positions of images taken for each utensil helped approximate the conditions a utensil might present itself in a kitchen: utensils are not always in any one particular position. Regarding the breakdown of the self-collected dataset for training and validation, 75% of the self-collected dataset was used for training; the other 25% was used for validation.
+
+<p align="center">
+    <img src="./misc_images/utensil_dataset_explore_db.png" height="80%" width="100%">
+    <img src="./misc_images/utensil_dataset_training_breakdown_bar_chart.png" height="50%" width="48%">
+    <img src="./misc_images/utensil_dataset_validation_breakdown_bar_chart.png" height="50%" width="48%">
+</p>
 #### Results
 #### Discussion
 #### Conclusions / Future Work
