@@ -38,17 +38,30 @@ All images for the self-collected dataset were taken manually using an iPhone 6 
 All photos taken using an iPhone 6 Plus and iPad 3 were originally 2448×2448 pixels; however, since GoogLeNet is functionalized for 256x256 images and DIGITS has a method of resizing images (but without retaining original aspect ratio), a python script was used to resize all images to 256x256 pixels (whilst maintaining original aspect ratio) before the utensil dataset was uploaded to DIGITS. 
 
 ```python
-# establish collision map
-other_detected_objects = detected_objects[index + 1:]
-ros_cloud_other_objects_data = []
-if other_detected_objects:
-    ros_cloud_other_objects_data = [[xyzrgb for xyzrgb in pc2.read_points(other_object.cloud, 
-        skip_nans=True, field_names=("x", "y", "z", "rgb"))] for other_object in other_detected_objects]
-    ros_cloud_other_objects_data = np.concatenate(ros_cloud_other_objects_data).tolist()
-collision_map_pcl_data = pcl.PointCloud_PointXYZRGB()
-collision_map_pcl_data.from_list(ros_cloud_table_data + ros_cloud_other_objects_data)
-collision_map = pcl_to_ros(collision_map_pcl_data)
-pcl_collision_map_pub.publish(collision_map)
+def resize_all_images_in_dir(class_name, files_in_dir_list, final_size):
+    """
+    Resize all images in specified dir
+    Args:
+        class_name (str)
+        files_in_dir_list (list)
+        final_size (int)
+    """
+    for file_name_index, file_name in enumerate(files_in_dir_list):
+         print('\n{} file_name: {}'.format(file_name_index, file_name))
+         if file_name == '.DS_Store':
+             continue
+         print('PATH_NAME/class_name/file_name: {}/{}/{}'.format(PATH_NAME, class_name, file_name))
+         if os.path.isfile('{}/{}/{}'.format(PATH_NAME, class_name, file_name)):
+             im = Image.open('{}/{}/{}'.format(PATH_NAME, class_name, file_name))
+             f, e = os.path.splitext('{}/{}/{}'.format(PATH_NAME, class_name, file_name))
+             size = im.size
+             print('original image size: {}'.format(size))
+             ratio = float(final_size) / max(size)
+             new_image_size = tuple([int(x*ratio) for x in size])
+             im = im.resize(new_image_size, Image.ANTIALIAS)
+             new_im = Image.new("RGB", (final_size, final_size))
+             new_im.paste(im, ((final_size-new_image_size[0])//2, (final_size-new_image_size[1])//2))
+             new_im.save('{}_img_{}_resized.jpg'.format(class_name.lower(), file_name_index), 'JPEG', quality=90)
 ```
 #### Results
 
