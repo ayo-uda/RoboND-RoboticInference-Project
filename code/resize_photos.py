@@ -33,3 +33,4 @@ class_names = ['Wooden-Spoon', 'Wooden-Fork', 'Metal-Spoon', 'Metal-Fork', 'Meta
 for class_name in class_names:
     files_in_dir_list = os.listdir('{}/{}'.format(PATH_NAME, class_name))
     resize_all_images_in_dir(class_name=class_name, files_in_dir_list=files_in_dir_list, final_size=256)
+    
