@@ -16,23 +16,23 @@ DIGITS is preseeded with three CNNs for image classificaiton: LeNet, AlexNet, Go
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/AlexNet_P1Dataset_Epoches5_SGD_EvaluateResults.png" height="80%" width="48%">
-    <img src="./misc_images/GoogLeNet_P1Dataset_Epoches5_SGD_EvaluateResults.png" height="80%" width="48%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/GoogLeNet_P1Dataset_Epoches5_SGD_EvaluateResults.png" height="80%" width="48%">
 </p>
 
 Given that it was anticipated that more than 5 epoches would be necessary for high accuracy on the self-collected dataset, also coupled with the fact the CNN prototypes, AlexNet and GoogLeNet, used on the supplied dataset had the same accuracy at 5 epoches, the number of epoches was bumped up to 16 while keeping all other hyperparameters the same. At 16 epoches, the accuracy of the AlexNet prototype went down, perhaps due to overfitting on the training set, while the accuracy of GoogLeNet prototype stayed the same. It is necessary to note that the while the accuracy of the GoogLeNet prototype was found to be better, its inferencing speed was consistently slower than that of the AlexNet prototype. However, accuracy is considered to be more important in the tradeoff between accuracy and inferencing speed for this project. Likewise, GoogleNet was chosen as the CNN for this project (coupled with SGD and a epoch value of 64 to give the CNN prototype enough time to learn generalized features of the training dataset but, at the same time, minimize overfitting).
 
 <p align="center">
-    <img src="./misc_images/AlexNet_P1Dataset_Epoches16_SGD_EvaluateResults.png" height="80%" width="48%">
-    <img src="./misc_images/GoogLeNet_P1Dataset_Epoches16_SGD_EvaluateResults.png" height="80%" width="48%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/AlexNet_P1Dataset_Epoches16_SGD_EvaluateResults.png" height="80%" width="48%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/GoogLeNet_P1Dataset_Epoches16_SGD_EvaluateResults.png" height="80%" width="48%">
 </p>
 
 #### Data Acquisition
 All images for the self-collected dataset were taken manually using an iPhone 6 Plus and iPad 3. In the self-collected dataset of 2138 total images, there are five category of utensils and silverware: metal spoon (435 images), metal fork (470 images), metal spatula (425 images), wooden spoon (405 images), and wooden fork (403 images). All utensils and silverware were placed on a granite tabletop in a kitchen area, to best approximate the intended environment of real time classification, and the iPhone 6 Plus / iPad 3 was manually rotated over each utensil category at a arm's length distance. Measures were taken to maximize the variety of angles and positions of images taken for each utensil, so that during training the final CNN prototype would learn to generalize classification to broader, generalized features of each utensil. Additionally, maximizing the variety of angles and positions of images taken for each utensil helped approximate the conditions a utensil might present itself in a kitchen: utensils are not always in any one particular position. Regarding the breakdown of the self-collected dataset for training and validation, 75% of the self-collected dataset was used for training; the other 25% was used for validation.
 
 <p align="center">
-    <img src="./misc_images/utensil_dataset_explore_db.png" height="80%" width="100%">
-    <img src="./misc_images/utensil_dataset_training_breakdown_bar_chart.png" height="50%" width="48%">
-    <img src="./misc_images/utensil_dataset_validation_breakdown_bar_chart.png" height="50%" width="48%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/utensil_dataset_explore_db.png" height="80%" width="100%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/utensil_dataset_training_breakdown_bar_chart.png" height="50%" width="48%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/utensil_dataset_validation_breakdown_bar_chart.png" height="50%" width="48%">
 </p>
 
 All photos taken using an iPhone 6 Plus and iPad 3 were originally 2448×2448 pixels; however, since GoogLeNet is functionalized for 256x256 images and DIGITS has a method of resizing images (but without retaining original aspect ratio), a python function was made and used to resize all images to 256x256 pixels (whilst maintaining original aspect ratio) before the utensil dataset was uploaded to DIGITS. 
@@ -66,12 +66,12 @@ def resize_all_images_in_dir(class_name, files_in_dir_list, final_size):
 #### Results
 The accuracy of the GoogLeNet prototype (5 epoches; SGD) trained on the supplied dataset was approximately 100% (as shown below). And as aforementioned and shown above, when evaluating the GoogleNet prototype, the accuracy and average inferencing time for the GoogLeNet prototype was 75.40983% and 5.34 ms respectively: meeting the numerical requirements of 75% and <10ms for a CNN model trained on the supplied dataset in this project.
 <p align="center">
-    <img src="./misc_images/GoogLeNet_P1Dataset_Epoches5_LossAndAccuracy_Curves.png" height="80%" width="100%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/GoogLeNet_P1Dataset_Epoches5_LossAndAccuracy_Curves.png" height="80%" width="100%">
 </p>
 The validation accuracy of the GoogLeNet prototype (64 epoches; SGD) trained on the entire utensil/silvereware dataset was approximately 95%. The accuracy for any given utensil category ranged between 92% and 100%. The training and validation losses never diverged and, at the 64th epoch, were comparable at a value of around .5. By the 42nd epoch, the learning rate of the GoogLeNet prototype model dropped to zero, and correspondingly, there were no appreciable gains in validation accuracy beyond this epoch.
 <p align="center">
-    <img src="./misc_images/GoogLeNet_UtensilDataset_Epoches64_SGD_LossAndAccuracy_Curve.png" height="80%" width="100%">
-    <img src="./misc_images/GoogLeNet_UtensilDataset_Epoches64_SGD_LearningRate_Curve.png" height="80%" width="100%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/GoogLeNet_UtensilDataset_Epoches64_SGD_LossAndAccuracy_Curve.png" height="80%" width="100%">
+    <img src="https://raw.githubusercontent.com/theayoad/RoboND-RoboticInference-Project/master/misc_images/GoogLeNet_UtensilDataset_Epoches64_SGD_LearningRate_Curve.png" height="80%" width="100%">
 </p>
 #### Discussion
 Given training loss and validation loss are comparable at the 64th epoch, in other words the train loss to validation loss ratio is around 1 at the 64th epoch, it can be posited that the GoogLeNet model did not overfit or "memorize" the training dataset, which would have manifested in an observable deterioration in performance regarding the validation dataset. Additionally, given that the GoogLeNet model was able to achieve an overall validation accuracy of approximately 95%, it can be posited that the model succesfully learned generalized features of each utensil category. Its ability to learn generalized features was aided by the variety of images in each category taken at different angles and positions; on the other hand, its ability to learn generalized features was also inhibited by the fact that all images in the utensil dataset were taken in the same environment with minimal object interference and/or presence of other objects in the plane of view. As image classification of utensils and silverware was investigated with the idea in mind that such object classification could facilitate the process of cooking for elderly, by all appearances, the GoogLeNet model trained on the utensil dataset would be useful in helping the elderly identify given utensils and silverware in the kitchen or in complementing their initial intuition on the class of a given utensil. Further, it is particularly encouraging that although elderly people generally lose the ability to differentiate between smaller lines at an arms length distance, the GoogLeNet prototype of this project has shown the ability to classify different classes of utensils with similar lines and those subject to light distortion. 
