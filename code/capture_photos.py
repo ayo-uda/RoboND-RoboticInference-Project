@@ -6,14 +6,14 @@ import cv2
 cap = cv2.VideoCapture(0)
 
 # Give image a name type
-name_type = 'Small_cat'
+name_type = 'metal-spoon' # metal-fork, metal-spatula, wooden-fork, wooden-spoon
 
 # Initialize photo count
 number = 0
 
 # Specify the name of the directory that has been premade and be sure that it's the name of your class
 # Remember this directory name serves as your datas label for that particular class
-set_dir = 'wooden_spoon'
+set_dir = 'Metal-Spoon' # Metal Fork, Metal Spatula, Wooden Fork, Wooden Spoon
 
 print ("Photo capture enabled! Press esc to take photos!")
 
