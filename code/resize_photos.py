@@ -1,9 +1,16 @@
 from PIL import Image
 import os, sys
 
-PATH_NAME = "/Users/theayoad/Desktop"
+PATH_NAME = "~/Desktop"
 
 def resize_all_images_in_dir(class_name, files_in_dir_list, final_size):
+    """
+    Resize all images in specified dir
+    Args:
+        class_name (str)
+        files_in_dir_list (list)
+        final_size (int)
+    """
     for file_name_index, file_name in enumerate(files_in_dir_list):
          print('\n{} file_name: {}'.format(file_name_index, file_name))
          if file_name == '.DS_Store':
@@ -21,9 +28,8 @@ def resize_all_images_in_dir(class_name, files_in_dir_list, final_size):
              new_im.paste(im, ((final_size-new_image_size[0])//2, (final_size-new_image_size[1])//2))
              new_im.save('{}_img_{}_resized.jpg'.format(class_name.lower(), file_name_index), 'JPEG', quality=90)
 
-
-# class_names = ['Wooden-Spoon', 'Wooden-Fork', 'Metal-Spoon', 'Metal-Fork', 'Metal-Spatula']
-class_names = ['Wooden-Fork', 'Wooden-Fork2']
+# iterate through all class names which also are existing directory names within the specified path
+class_names = ['Wooden-Spoon', 'Wooden-Fork', 'Metal-Spoon', 'Metal-Fork', 'Metal-Spatula']
 for class_name in class_names:
     files_in_dir_list = os.listdir('{}/{}'.format(PATH_NAME, class_name))
     resize_all_images_in_dir(class_name=class_name, files_in_dir_list=files_in_dir_list, final_size=256)
